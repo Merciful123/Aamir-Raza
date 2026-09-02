@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "custom_banner": {
+      "type": "tisso-banner"
+    },
+    "custom_product_grid": {
+      "type": "custom-product-grid"
+    }
+  },
+  "order": [
+    "tisso_banner",
+    "custom_product_grid"
+  ]
+}

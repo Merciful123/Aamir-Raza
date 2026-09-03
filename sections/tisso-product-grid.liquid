@@ -5,7 +5,6 @@
   class="tisso-product-grid"
 >
   <div class="tisso-product-grid__container">
-
     {% if section.settings.heading != blank %}
       <header class="tisso-product-grid__header">
         <h2 class="tisso-product-grid__heading">
@@ -15,20 +14,16 @@
     {% endif %}
 
     <div class="tisso-product-grid__items">
-
       {% for block in section.blocks %}
         {% assign product = block.settings.product %}
 
         {% if product != blank %}
-
           <article
             class="tisso-product-card"
             data-product-id="{{ product.id }}"
             {{ block.shopify_attributes }}
           >
-
             <div class="tisso-product-card__image-wrapper">
-
               {% if product.featured_image %}
                 {{
                   product.featured_image
@@ -39,12 +34,11 @@
                     sizes: '(max-width: 749px) 50vw, 33vw',
                     class: 'tisso-product-card__image',
                     alt: product.featured_image.alt
-                    | default: product.title
+                  | default: product.title
                 }}
               {% else %}
                 {{ 'product-1' | placeholder_svg_tag: 'tisso-product-card__placeholder' }}
               {% endif %}
-
 
               <button
                 type="button"
@@ -58,18 +52,76 @@
               >
                 <span aria-hidden="true">+</span>
               </button>
-
             </div>
-
           </article>
-
         {% endif %}
       {% endfor %}
-
     </div>
+  </div>
 
+  <!-- PRODUCT QUICK VIEW MODAL -->
+
+  <div
+    id="TissoProductModal-{{ section.id }}"
+    class="tisso-product-modal"
+    aria-hidden="true"
+  >
+    <div
+      class="tisso-product-modal__overlay"
+      data-modal-close
+    ></div>
+
+    <div
+      class="tisso-product-modal__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="TissoProductModalTitle-{{ section.id }}"
+    >
+      <button
+        type="button"
+        class="tisso-product-modal__close"
+        data-modal-close
+        aria-label="Close product details"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <div class="tisso-product-modal__content">
+        
+        <!-- PRODUCT IMAGE -->
+
+        <div class="tisso-product-modal__image-wrapper">
+          <img
+            class="tisso-product-modal__image"
+            src=""
+            alt=""
+            width="800"
+            height="1000"
+          >
+        </div>
+
+        <!-- PRODUCT INFORMATION -->
+
+        <div class="tisso-product-modal__details">
+          <h2
+            id="TissoProductModalTitle-{{ section.id }}"
+            class="tisso-product-modal__title"
+          ></h2>
+
+          <div
+            class="tisso-product-modal__price"
+          ></div>
+
+          <div
+            class="tisso-product-modal__description"
+          ></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<script src="{{ 'tisso-product-grid.js' | asset_url }}" defer="defer"></script>
 
 {% schema %}
 {

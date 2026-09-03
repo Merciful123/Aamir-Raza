@@ -7,16 +7,31 @@
   <!-- TOP NAVIGATION -->
 
   <header class="tisso-banner__header">
+    <!-- Mobile menu button -->
+    <button
+      type="button"
+      class="tisso-banner__mobile-menu-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <span class="tisso-banner__menu-icon tisso-banner__menu-icon--open"> ☰ </span>
+
+      <span class="tisso-banner__menu-icon tisso-banner__menu-icon--close"> × </span>
+    </button>
+
+    <!-- Logo -->
     <div class="tisso-banner__logo">
       {{ section.settings.logo_text }}
     </div>
 
+    <!-- Desktop announcement -->
     <div class="tisso-banner__announcement">
       <span class="tisso-banner__announcement-text">
         {{ section.settings.announcement_text }}
       </span>
     </div>
 
+    <!-- Desktop button -->
     <a
       href="{{ section.settings.header_button_link }}"
       class="tisso-banner__header-button"
@@ -25,9 +40,33 @@
         {{ section.settings.header_button_text }}
       </span>
 
-      <span class="tisso-banner__button-arrow" aria-hidden="true"> → </span>
+      <span
+        class="tisso-banner__button-arrow"
+        aria-hidden="true"
+      >
+        →
+      </span>
     </a>
   </header>
+
+  <!-- MOBILE MENU -->
+
+  <div class="tisso-banner__mobile-menu">
+    <div class="tisso-banner__mobile-announcement">
+      {{ section.settings.announcement_text }}
+    </div>
+
+    <a
+      href="{{ section.settings.header_button_link }}"
+      class="tisso-banner__mobile-button"
+    >
+      <span>
+        {{ section.settings.header_button_text }}
+      </span>
+
+      <span aria-hidden="true"> → </span>
+    </a>
+  </div>
 
   <!-- MAIN BANNER -->
 
@@ -70,23 +109,25 @@
       <p class="tisso-banner__mobile-description">
         {{ section.settings.subtitle }}
       </p>
-
-      <a
-        href="{{ section.settings.hero_button_link }}"
-        class="tisso-banner__hero-button"
-      >
-        <span>
-          {{ section.settings.hero_button_text }}
-        </span>
-
-        <span
-          class="tisso-banner__hero-button-arrow"
-          aria-hidden="true"
-        >
-          →
-        </span>
-      </a>
     </div>
+
+    <!-- MOBILE SHOP NOW BUTTON -->
+
+    <a
+      href="{{ section.settings.hero_button_link }}"
+      class="tisso-banner__hero-button tisso-banner__mobile-hero-button"
+    >
+      <span>
+        {{ section.settings.hero_button_text }}
+      </span>
+
+      <span
+        class="tisso-banner__hero-button-arrow"
+        aria-hidden="true"
+      >
+        →
+      </span>
+    </a>
 
     <!-- Desktop Content -->
 
@@ -123,6 +164,11 @@
     {{ section.settings.bottom_text }}
   </div>
 </section>
+
+{% comment %} toggle js in mobile {% endcomment %}
+<script src="{{ 'tisso-banner.js' | asset_url }}" defer="defer"></script>
+
+{% comment %} toggle js in mobile ends {% endcomment %}
 
 {% schema %}
 {

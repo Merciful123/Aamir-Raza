@@ -85,11 +85,15 @@ body{
 }
 
 
-   /* ANIMATED HEADER BUTTON */
-/* 
-   CHOOSE GIFT — HEADER BUTTON
-   Yellow → Black
-    */
+
+/* MOBILE MENU BUTTON */
+
+
+/* ANIMATED HEADER BUTTON */
+
+/* CHOOSE GIFT — HEADER BUTTON Yellow → Black */
+
+
 .tisso-banner__header-button > span,
 .tisso-banner__hero-button > span {
   position: relative;
@@ -100,7 +104,8 @@ body{
 /* 
    CHOOSE GIFT
    Yellow base → Black fill
-    */
+   
+*/
 
 .tisso-banner__header-button {
   position: relative;
@@ -247,7 +252,7 @@ body{
 /* 
    SHOP NOW — HERO BUTTON
    Black → Yellow
-   */
+*/
 
 .tisso-banner__hero-button {
   position: relative;
@@ -359,13 +364,14 @@ body{
 }
 
 
+
+
    /* TABLET */
 
 @media screen and (max-width: 1024px) {
 
   .tisso-banner__desktop-content {
     left: 5%;
-    /* bottom: 90px; */
 
     width: 360px;
   }
@@ -380,78 +386,280 @@ body{
 
 }
 
+.tisso-banner__mobile-menu-toggle,
+.tisso-banner__mobile-menu {
+  display: none;
+}
 
-   /* MOBILE */
+
+ /* 
+   MOBILE
+*/
 
 @media screen and (max-width: 749px) {
 
-  .tisso-banner__header {
-    grid-template-columns: auto 1fr auto;
+  /* 
+     HEADER
+  */
 
-    min-height: 78px;
+  .tisso-banner__header {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    min-height: 58px;
+
+    padding-left: 0;
+    padding-right: 0;
+
+    background: #f5f5f5;
   }
 
+  .tisso-banner__mobile-menu-toggle {
+    display: flex;
+  }
+
+  .tisso-banner__mobile-menu {
+    display: flex;
+  }
+
+  /* LOGO */
 
   .tisso-banner__logo {
-    order: 2;
+    grid-column: 2;
 
     padding-left: 0;
 
     text-align: center;
 
-    font-size: 26px;
+    font-size: 24px;
+    font-weight: 700;
+
     letter-spacing: 0.01em;
+
+    white-space: nowrap;
   }
 
+
+  /* HIDE DESKTOP ANNOUNCEMENT */
 
   .tisso-banner__announcement {
     display: none;
   }
 
 
+  /* HIDE DESKTOP HEADER BUTTON */
+
   .tisso-banner__header-button {
-    order: 3;
-
-    width: 0;
-    height: 0;
-
-    opacity: 0;
-    pointer-events: none;
+    display: none;
   }
 
 
-  /*
-     Mobile menu icon.
-
-     We are creating it using CSS rather than
-     depending on Dawn's header.
+  /* 
+     MOBILE MENU TOGGLE
   */
 
-  .tisso-banner__header::before {
-    content: "☰";
+  .tisso-banner__mobile-menu-toggle {
+    grid-column: 1;
 
-    order: 1;
+    position: relative;
 
-    margin-left: 18px;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+
+    margin-left: 8px;
+
+    padding: 0;
+
+    border: 0;
+
+    background: transparent;
+
+    color: #000;
+
+    cursor: pointer;
+
+    font-family: Arial, sans-serif;
+  }
+
+
+  .tisso-banner__menu-icon {
+    position: absolute;
 
     font-size: 27px;
+
+    line-height: 1;
+
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+
+  /* Hamburger */
+
+  .tisso-banner__menu-icon--open {
+    opacity: 1;
+
+    transform: rotate(0deg);
+  }
+
+
+  /* X */
+
+  .tisso-banner__menu-icon--close {
+    opacity: 0;
+
+    transform: rotate(-90deg);
+  }
+
+
+  /* 
+     MOBILE MENU
+  */
+
+  .tisso-banner__mobile-menu {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 20px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 0 20px;
+
+    background: #f5f5f5;
+
+    text-align: center;
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+      max-height 0.35s var(--ease),
+      opacity 0.25s ease,
+      padding 0.35s var(--ease);
+  }
+
+
+  /* ANNOUNCEMENT */
+
+  .tisso-banner__mobile-announcement {
+    font-family: var(--font-jost);
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+    line-height: 1.35;
+
+    color: #000;
+  }
+
+
+  /* MOBILE CHOOSE GIFT */
+
+  .tisso-banner__mobile-button {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 22px;
+
+    width: 222px;
+
+    height: 40px;
+
+    background: var(--tisso-yellow);
+
+    color: var(--tisso-black);
+
+    text-decoration: none;
+
+    font-family: var(--font-jost);
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+    line-height: 20px;
+  }
+
+
+  .tisso-banner__mobile-button span:last-child {
+    font-size: 24px;
+
     line-height: 1;
   }
 
 
-  /* Hero */
+  /* 
+     OPEN MOBILE MENU
+  */
 
-  .tisso-banner__hero {
-    min-height: 530px;
+  .tisso-banner__header.menu-open
+  .tisso-banner__menu-icon--open {
+    opacity: 0;
 
-    display: flex;
-    flex-direction: column;
+    transform: rotate(90deg);
   }
 
 
-  /*
-     Mobile screenshot has title and description
-     above the illustration.
+  .tisso-banner__header.menu-open
+  .tisso-banner__menu-icon--close {
+    opacity: 1;
+
+    transform: rotate(0deg);
+  }
+
+
+  .tisso-banner__mobile-menu.menu-open {
+    max-height: 180px;
+
+    padding: 20px 20px 22px;
+
+    opacity: 1;
+  }
+
+
+  /* 
+     HERO
+  */
+
+  .tisso-banner__hero {
+    position: relative;
+
+    min-height: 650px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+  }
+
+
+  /* 
+     MOBILE CONTENT
   */
 
   .tisso-banner__mobile-content {
@@ -466,26 +674,16 @@ body{
     text-align: center;
   }
 
-.tisso-banner__mobile-content .tisso-banner__hero-button {
-  position: absolute;
-  left: 50%;
-  bottom: -160%;
-  transform: translateX(-50%);
-
-  display: inline-flex;
-
-  margin: 0;
-
-  z-index: 10;
-}
-
 
   .tisso-banner__mobile-title {
     margin: 0 0 28px;
 
     font-size: 30px;
+
     font-weight: 500;
+
     line-height: 130%;
+
     letter-spacing: 0;
   }
 
@@ -496,14 +694,13 @@ body{
     margin: 0 auto;
 
     font-size: 20px;
+
     line-height: 1.35;
   }
 
 
-  /*
-     Mobile illustration positioning.
-
-     The image sits below the heading content.
+  /* 
+     MOBILE HERO IMAGE
   */
 
   .tisso-banner__image-wrapper {
@@ -515,12 +712,33 @@ body{
 
   .tisso-banner__image {
     object-fit: cover;
+
     object-position: center center;
   }
 
 
+  /* 
+     MOBILE SHOP NOW
+  */
+
+  .tisso-banner__mobile-hero-button {
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 35px;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+
+    display: inline-flex;
+  }
+
+
   /*
-     Hide desktop content.
+     IMPORTANT:
+     HIDE DESKTOP CONTENT
   */
 
   .tisso-banner__desktop-content {
@@ -529,7 +747,7 @@ body{
 
 
   /*
-     Bottom announcement
+     BOTTOM BAR
   */
 
   .tisso-banner__bottom-bar {
@@ -543,7 +761,9 @@ body{
 }
 
 
-/* SMALL MOBILE */
+/*
+   SMALL MOBILE
+*/
 
 @media screen and (max-width: 480px) {
 
@@ -568,8 +788,12 @@ body{
 
 
   .tisso-banner__hero {
-    min-height: 525px;
+    min-height: 650px;
+  }
+
+
+  .tisso-banner__mobile-hero-button {
+    bottom: 35px;
   }
 
 }
-

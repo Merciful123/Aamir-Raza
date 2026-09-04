@@ -1,0 +1,608 @@
+/* Product grid container */
+.tisso-product-grid {
+  position: relative;
+  width: 100%;
+}
+
+/* Product grid content */
+.tisso-product-grid__container {
+  width: 100%;
+}
+
+/* Product grid layout */
+.tisso-product-grid__items {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Individual product card */
+.tisso-product-card {
+  position: relative;
+  min-width: 0;
+}
+
+/* Product image wrapper */
+.tisso-product-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Product image */
+.tisso-product-card__image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Product placeholder image */
+.tisso-product-card__placeholder {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Plus button displayed over the product image */
+.tisso-product-card__add-button {
+  position: absolute;
+  top: var(--button-top);
+  left: var(--button-left);
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+  padding: 0;
+
+  transform: translate(-50%, -50%);
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #ffffff;
+  color: #000000;
+
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+/* Plus symbol inside the product button */
+.tisso-product-card__add-button span {
+  display: block;
+  margin-top: -2px;
+}
+
+/* Product modal */
+.tisso-product-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  visibility: hidden;
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+/* Visible product modal */
+.tisso-product-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Dim the page smoothly when the modal is open */
+.tisso-product-modal__overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+
+  background: rgba(25, 24, 24, 0.95) !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+/* Show the dimmed background when the modal is open */
+.tisso-product-modal.is-open .tisso-product-modal__overlay {
+  opacity: 1;
+}
+
+/* Product modal box */
+.tisso-product-modal__dialog {
+  position: relative;
+  z-index: 1;
+
+  width: clamp(360px, 20vw, 430px);
+  height: clamp(500px, 58vh, 560px);
+
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+
+  overflow: hidden;
+
+  background: #ffffff;
+  color: #000000;
+
+  box-sizing: border-box;
+}
+
+/* Modal close button */
+.tisso-product-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 5;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+  color: #000000;
+
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+/* Main modal content */
+.tisso-product-modal__content {
+  display: grid;
+
+  grid-template-columns: minmax(0, 43%) minmax(0, 57%);
+  grid-template-rows: auto auto auto auto auto;
+
+  column-gap: 10px;
+
+  width: 100%;
+  height: 100%;
+
+  box-sizing: border-box;
+
+  padding: 43px 24px 30px;
+}
+
+/* Product image inside the modal */
+.tisso-product-modal__image-wrapper {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+
+  width: 100%;
+  height: 166px;
+
+  overflow: hidden;
+}
+
+/* Modal product image */
+.tisso-product-modal__image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* Allow modal details to participate directly in the main grid */
+.tisso-product-modal__details {
+  display: contents;
+}
+
+/* Product title */
+.tisso-product-modal__title {
+  grid-column: 2;
+  grid-row: 1;
+
+  align-self: start;
+
+  margin: 3px 0 0;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* Product price */
+.tisso-product-modal__price {
+  grid-column: 2;
+  grid-row: 2;
+
+  align-self: start;
+
+  margin-top: 17px;
+
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* Product description */
+.tisso-product-modal__description {
+  grid-column: 2;
+  grid-row: 3;
+
+  align-self: start;
+
+  margin-top: 14px;
+
+  max-height: 84px;
+  overflow: hidden;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+/* Remove default paragraph spacing from product description */
+.tisso-product-modal__description p {
+  margin: 0;
+}
+
+/* Product variant section */
+.tisso-product-modal__variants {
+  grid-column: 1 / -1;
+  grid-row: 4;
+
+  width: 100%;
+  margin-top: 16px;
+}
+
+/* Individual variant option */
+.tisso-product-option {
+  width: 100%;
+}
+
+/* Spacing between variant options */
+.tisso-product-option + .tisso-product-option {
+  margin-top: 15px;
+}
+
+/* Variant option label */
+.tisso-product-option__label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+/* Color selector */
+.tisso-product-color__selector {
+  --option-count: 1;
+  --active-index: 0;
+
+  position: relative;
+
+  display: grid;
+  grid-template-columns: repeat(var(--option-count), minmax(0, 1fr));
+
+  width: 100%;
+  height: 49px;
+
+  overflow: hidden;
+
+  border: 1px solid #858585;
+  box-sizing: border-box;
+}
+
+/* Sliding black background for the selected color */
+.tisso-product-color__indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+
+  width: calc(100% / var(--option-count));
+  height: 100%;
+
+  background: #000000;
+
+  transform: translateX(calc(var(--active-index) * 100%));
+
+  transition:
+    transform 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Color selector button */
+.tisso-product-color__button {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+
+  border: 0;
+  border-left: 5px solid var(--swatch-color);
+
+  background: transparent;
+  color: #000000;
+
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: color 0.25s ease;
+}
+
+/* White text for the selected color */
+.tisso-product-color__button.is-active {
+  color: #ffffff;
+}
+
+/* Keyboard focus state for color buttons */
+.tisso-product-color__button:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: -2px;
+}
+
+/* Size selector wrapper */
+.tisso-product-select__wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 49px;
+}
+
+/* Custom arrow for the size selector */
+.tisso-product-select__wrapper::after {
+  content: '';
+
+  position: absolute;
+  top: 50%;
+  right: 17px;
+
+  width: 10px;
+  height: 10px;
+
+  border-right: 2px solid #000000;
+  border-bottom: 2px solid #000000;
+
+  transform: translateY(-65%) rotate(45deg);
+
+  pointer-events: none;
+}
+
+/* Size selector */
+.tisso-product-select__control {
+  width: 100%;
+  height: 49px;
+
+  padding: 0 45px 0 14px;
+
+  appearance: none;
+
+  border: 1px solid #858585;
+  border-radius: 0;
+
+  background: #ffffff;
+  color: #000000;
+
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 400;
+
+  cursor: pointer;
+}
+
+/* Keyboard focus state for size selector */
+.tisso-product-select__control:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: -2px;
+}
+
+/* Add to cart button */
+.tisso-product-modal__add-to-cart {
+  grid-column: 1 / -1;
+  grid-row: 5;
+
+  align-self: end;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  width: 100%;
+  height: 54px;
+
+  margin: 3em 0 0;
+  padding: 0 30px 0 30px;
+  gap: 2em;
+  border: 0;
+  border-radius: 0;
+
+  background: #000000;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* Add to cart hover state */
+.tisso-product-modal__add-to-cart:hover {
+  opacity: 0.88;
+}
+
+/* Add to cart active state */
+.tisso-product-modal__add-to-cart:active {
+  transform: scale(0.99);
+}
+
+/* Disabled add to cart button */
+.tisso-product-modal__add-to-cart:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Add to cart text */
+.tisso-product-modal__add-text {
+  display: block;
+}
+
+/* Add to cart arrow */
+.tisso-product-modal__arrow {
+  position: absolute;
+  right: 35px;
+
+  font-size: 29px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+
+/* Prevent page scrolling while the modal is open */
+body.tisso-modal-open {
+  overflow: hidden;
+}
+
+/* Tablet and mobile layout */
+@media screen and (max-width: 749px) {
+  .tisso-product-grid__items {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tisso-product-modal {
+    padding: 16px;
+  }
+
+  .tisso-product-modal__dialog {
+    width: calc(100vw - 32px);
+    height: min(58vh, 540px);
+
+    max-width: 390px;
+  }
+
+  .tisso-product-modal__content {
+    grid-template-columns: minmax(0, 43%) minmax(0, 57%);
+
+    column-gap: 9px;
+
+    padding: 42px 20px 25px;
+  }
+
+  .tisso-product-modal__image-wrapper {
+    height: 155px;
+  }
+
+  .tisso-product-modal__title {
+    font-size: 17px;
+  }
+
+  .tisso-product-modal__price {
+    margin-top: 14px;
+    font-size: 17px;
+  }
+
+  .tisso-product-modal__description {
+    margin-top: 12px;
+
+    max-height: 78px;
+
+    font-size: 13px;
+  }
+
+  .tisso-product-option__label {
+    font-size: 15px;
+  }
+
+  .tisso-product-color__button,
+  .tisso-product-select__control {
+    font-size: 16px;
+  }  
+
+  .tisso-product-modal__add-to-cart {
+    margin: 1em 0 0;
+    height: 54px;
+  }
+  .tisso-product-modal__arrow {
+    right: 25px;
+  }
+}
+
+/* Smaller mobile screens */
+@media screen and (max-width: 420px) {
+  .tisso-product-modal {
+    padding: 12px;
+  }
+
+  .tisso-product-modal__dialog {
+    width: calc(100vw - 24px);
+    max-width: none;
+  }
+
+  .tisso-product-modal__content {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
+
+  .tisso-product-modal__image-wrapper {
+    height: 145px;
+  }
+
+  .tisso-product-modal__title {
+    font-size: 16px;
+  }
+
+  .tisso-product-modal__price {
+    font-size: 16px;
+  }
+
+  .tisso-product-modal__description {
+    font-size: 12px;
+  }
+
+  .tisso-product-modal__add-to-cart {
+    margin: 1em 0 0;
+    height: 54px;
+  }
+  .tisso-product-color__button,
+  .tisso-product-select__control {
+    font-size: 15px;
+  }
+}

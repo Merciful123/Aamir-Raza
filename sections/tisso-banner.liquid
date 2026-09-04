@@ -1,0 +1,265 @@
+{{ 'tisso-banner.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="tisso-banner"
+  id="TissoBanner-{{ section.id }}"
+>
+  <!-- TOP NAVIGATION -->
+
+  <header class="tisso-banner__header">
+    <!-- Mobile menu button -->
+    <button
+      type="button"
+      class="tisso-banner__mobile-menu-toggle"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <span class="tisso-banner__menu-icon tisso-banner__menu-icon--open"> ☰ </span>
+
+      <span class="tisso-banner__menu-icon tisso-banner__menu-icon--close"> × </span>
+    </button>
+
+    <!-- Logo -->
+    <div class="tisso-banner__logo">
+      {{ section.settings.logo_text }}
+    </div>
+
+    <!-- Desktop announcement -->
+    <div class="tisso-banner__announcement">
+      <span class="tisso-banner__announcement-text">
+        {{ section.settings.announcement_text }}
+      </span>
+    </div>
+
+    <!-- Desktop button -->
+    <a
+      href="{{ section.settings.header_button_link }}"
+      class="tisso-banner__header-button"
+    >
+      <span class="tisso-banner__button-text">
+        {{ section.settings.header_button_text }}
+      </span>
+
+      <span
+        class="tisso-banner__button-arrow"
+        aria-hidden="true"
+      >
+        →
+      </span>
+    </a>
+  </header>
+
+  <!-- MOBILE MENU -->
+
+  <div class="tisso-banner__mobile-menu">
+    <div class="tisso-banner__mobile-announcement">
+      {{ section.settings.announcement_text }}
+    </div>
+
+    <a
+      href="{{ section.settings.header_button_link }}"
+      class="tisso-banner__mobile-button"
+    >
+      <span>
+        {{ section.settings.header_button_text }}
+      </span>
+
+      <span aria-hidden="true"> → </span>
+    </a>
+  </div>
+
+  <!-- MAIN BANNER -->
+
+  <div class="tisso-banner__hero">
+    {% if section.settings.hero_image != blank or section.settings.hero_mobile_image != blank %}
+      <div class="tisso-banner__image-wrapper">
+        <picture>
+          {% if section.settings.hero_mobile_image != blank %}
+            <source
+              media="(max-width: 749px)"
+              srcset="{{ section.settings.hero_mobile_image | image_url: width: 1200 }}"
+            >
+          {% endif %}
+
+          {% if section.settings.hero_image != blank %}
+            {{
+              section.settings.hero_image
+              | image_url: width: 2400
+              | image_tag: loading: 'eager', class: 'tisso-banner__image', widths: '750, 1100, 1500, 2000, 2400'
+            }}
+
+          {% elsif section.settings.hero_mobile_image != blank %}
+            {{
+              section.settings.hero_mobile_image
+              | image_url: width: 1200
+              | image_tag: loading: 'eager', class: 'tisso-banner__image'
+            }}
+          {% endif %}
+        </picture>
+      </div>
+    {% endif %}
+
+    <!-- Mobile / Top Content -->
+
+    <div class="tisso-banner__mobile-content">
+      <h1 class="tisso-banner__mobile-title">
+        {{ section.settings.title }}
+      </h1>
+
+      <p class="tisso-banner__mobile-description">
+        {{ section.settings.subtitle }}
+      </p>
+    </div>
+
+    <!-- MOBILE SHOP NOW BUTTON -->
+
+    <a
+      href="{{ section.settings.hero_button_link }}"
+      class="tisso-banner__hero-button tisso-banner__mobile-hero-button"
+    >
+      <span>
+        {{ section.settings.hero_button_text }}
+      </span>
+
+      <span
+        class="tisso-banner__hero-button-arrow"
+        aria-hidden="true"
+      >
+        →
+      </span>
+    </a>
+
+    <!-- Desktop Content -->
+
+    <div class="tisso-banner__desktop-content">
+      <h1 class="tisso-banner__desktop-title">
+        {{ section.settings.title }}
+      </h1>
+
+      <div class="tisso-banner__desktop-description">
+        {{ section.settings.desktop_description }}
+      </div>
+
+      <a
+        href="{{ section.settings.hero_button_link }}"
+        class="tisso-banner__hero-button"
+      >
+        <span>
+          {{ section.settings.hero_button_text }}
+        </span>
+
+        <span
+          class="tisso-banner__hero-button-arrow"
+          aria-hidden="true"
+        >
+          →
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <!-- BOTTOM ANNOUNCEMENT -->
+
+  <div class="tisso-banner__bottom-bar">
+    {{ section.settings.bottom_text }}
+  </div>
+</section>
+
+{% comment %} toggle js in mobile {% endcomment %}
+<script src="{{ 'tisso-banner.js' | asset_url }}" defer="defer"></script>
+
+{% comment %} toggle js in mobile ends {% endcomment %}
+
+{% schema %}
+{
+  "name": "Tisso Banner",
+
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "TISSO VISON"
+    },
+
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Header announcement",
+      "default": "Find the ideal gift for your loved ones."
+    },
+
+    {
+      "type": "text",
+      "id": "header_button_text",
+      "label": "Header button text",
+      "default": "CHOOSE GIFT"
+    },
+
+    {
+      "type": "url",
+      "id": "header_button_link",
+      "label": "Header button link"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero illustration"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "hero_mobile_image",
+      "label": "Hero illustration - Mobile"
+    },
+
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Banner title",
+      "default": "The Gift Guide"
+    },
+
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Mobile description",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination."
+    },
+
+    {
+      "type": "textarea",
+      "id": "desktop_description",
+      "label": "Desktop description",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gift to delight your loved ones this holiday season."
+    },
+
+    {
+      "type": "text",
+      "id": "hero_button_text",
+      "label": "Hero button text",
+      "default": "SHOP NOW"
+    },
+
+    {
+      "type": "url",
+      "id": "hero_button_link",
+      "label": "Hero button link"
+    },
+
+    {
+      "type": "text",
+      "id": "bottom_text",
+      "label": "Bottom announcement",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Tisso Banner"
+    }
+  ]
+}
+{% endschema %}

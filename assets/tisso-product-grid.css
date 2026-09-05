@@ -1,3 +1,9 @@
+/* Product grid heading */
+
+header > h2.tisso-product-grid__heading {
+    font-size: 36px !important;
+  }
+
 /* Product grid container */
 .tisso-product-grid {
   position: relative;
@@ -7,6 +13,7 @@
 /* Product grid content */
 .tisso-product-grid__container {
   width: 100%;
+  padding: 91px 51.5px 50px 51.5px;
 }
 
 /* Product grid layout */
@@ -502,6 +509,20 @@ body.tisso-modal-open {
 
 /* Tablet and mobile layout */
 @media screen and (max-width: 749px) {
+
+  .tisso-banner__desktop-description{
+    margin-bottom: 1em;
+  }
+
+  header > h2.tisso-product-grid__heading{
+    margin-bottom: .5em;
+    font-size: 24px !important;
+  }
+  
+  .tisso-product-grid__container {
+    padding: 40px 16.7px 23px 16.7px;
+  }
+
   .tisso-product-grid__items {
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;

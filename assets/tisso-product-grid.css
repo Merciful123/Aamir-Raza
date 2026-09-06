@@ -129,9 +129,15 @@ header > h2.tisso-product-grid__heading {
 }
 
 /* Show the dimmed background when the modal is open */
-.tisso-product-modal.is-open .tisso-product-modal__overlay {
-  opacity: 1;
+
+.tisso-product-modal.is-open {
+  background: rgba(0, 0, 0, 0.35);
 }
+
+.tisso-product-modal.is-open .tisso-product-modal__overlay {
+  background: rgba(0, 0, 0, 0.35);
+}
+
 
 /* Product modal box */
 .tisso-product-modal__dialog {
@@ -514,9 +520,14 @@ body.tisso-modal-open {
     margin-bottom: 1em;
   }
 
+  .tisso-banner__mobile-hero-button{
+    margin-bottom: 3em;
+  }
+
   header > h2.tisso-product-grid__heading{
     margin-bottom: .5em;
     font-size: 24px !important;
+    text-align: center;
   }
   
   .tisso-product-grid__container {
